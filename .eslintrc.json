@@ -33,7 +33,8 @@
         "no-continue": "off",
         "no-underscore-dangle": "off",
         "no-param-reassign": "off",
-        "prefer-destructuring": "off"
+        "prefer-destructuring": "off",
+        "no-nested-ternary": "off"
     },
     "settings": {
         "import/resolver": {

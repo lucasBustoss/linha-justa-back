@@ -1,7 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
 import { format, parseISO } from 'date-fns';
 
-import League from '../models/League';
+import League from '../models/League/League';
 
 import TeamsService from './TeamService';
 

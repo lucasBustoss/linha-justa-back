@@ -1,6 +1,6 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, getManager } from 'typeorm';
 
-import LeagueTeam from '../models/LeagueTeam';
+import LeagueTeam from '../models/League/LeagueTeam';
 import Team from '../models/Team';
 
 import footballApi from '../config/footballApi';
@@ -38,6 +38,20 @@ class TeamService {
     const leagues = await this.teamRepository.find();
 
     return leagues;
+  }
+
+  public async findByLeague(league_id: string): Promise<Team[]> {
+    const entityManager = getManager();
+
+    const teams = await entityManager.query(`
+      SELECT      t.*
+      FROM        teams t
+      INNER JOIN  league_team lt
+      ON          t.id = lt.team_id
+      WHERE       lt.league_id = '${league_id}'
+    `);
+
+    return teams;
   }
 
   public async getTeamsByLeague(

@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import LeagueService from '../services/LeagueService';
 
-const testsRouter = Router();
+const leagueRouter = Router();
 
-testsRouter.get('/', async (request, response) => {
+leagueRouter.get('/', async (request, response) => {
   try {
     const leagueService = new LeagueService();
     const leagues = await leagueService.find();
@@ -15,7 +15,7 @@ testsRouter.get('/', async (request, response) => {
   }
 });
 
-testsRouter.post('/', async (request, response) => {
+leagueRouter.post('/', async (request, response) => {
   try {
     const leagueService = new LeagueService();
 
@@ -30,4 +30,4 @@ testsRouter.post('/', async (request, response) => {
   }
 });
 
-export default testsRouter;
+export default leagueRouter;

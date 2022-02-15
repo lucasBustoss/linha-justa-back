@@ -10,9 +10,8 @@ module.exports = {
   "password": process.env.TYPEORM_PASSWORD,
   "database": process.env.TYPEORM_DATABASE,
   "ssl": process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
-  "entities": [
-    process.env.NODE_ENV === 'production' ? "./dist/models/*.js" : "./src/models/*.ts"
-  ],
+  "entities":
+    process.env.NODE_ENV === 'production' ? ["./dist/models/*.js", "./dist/models/*/*.js"] : ["./src/models/*.ts", "./src/models/*/*.ts"],
   "migrations": [
     process.env.NODE_ENV === 'production' ? "./dist/database/migrations/*.js" : "./src/database/migrations/*.ts"
   ],

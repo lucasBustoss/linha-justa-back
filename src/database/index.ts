@@ -1,8 +1,6 @@
 import { createConnection } from 'typeorm';
 
 class Database {
-  mongoConnection;
-
   constructor() {
     this.init();
   }

@@ -48,6 +48,14 @@ class RankingService {
       await transaction.save(rankingTeams);
     }
   }
+
+  public async update(teams: RankingTeam[]): Promise<RankingTeam[]> {
+    console.log(teams);
+
+    const rankings = await this.rankingTeamRepository.save(teams);
+
+    return rankings;
+  }
 }
 
 export default RankingService;

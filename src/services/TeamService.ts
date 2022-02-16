@@ -35,9 +35,15 @@ class TeamService {
   }
 
   public async find(): Promise<Team[]> {
-    const leagues = await this.teamRepository.find();
+    const teams = await this.teamRepository.find();
 
-    return leagues;
+    return teams;
+  }
+
+  public async findById(id: string): Promise<Team> {
+    const team = await this.teamRepository.findOne(id);
+
+    return team;
   }
 
   public async findByLeague(league_id: string): Promise<Team[]> {

@@ -5,6 +5,8 @@ import RankingCategory from '../../models/Ranking/RankingCategory';
 
 import RankingTeamService from './RankingTeamService';
 import RankingCategoryService from './RankingCategoryService';
+import TeamService from '../TeamService';
+import RankingTeam from '../../models/Ranking/RankingTeam';
 
 class RankingService {
   rankingRepository: Repository<Ranking>;
@@ -13,10 +15,33 @@ class RankingService {
     this.rankingRepository = getRepository(Ranking);
   }
 
-  public async find(): Promise<Ranking[]> {
-    const rankings = await this.rankingRepository.find({});
+  public async find(league_id: string): Promise<Ranking> {
+    const teamService = new TeamService();
+    const ranking = await this.rankingRepository.findOne({
+      where: {
+        league_id,
+      },
+    });
 
-    return rankings;
+    if (ranking) {
+      for (let index = 0; index < ranking.teams.length; index++) {
+        const rankingTeam = ranking.teams[index];
+
+        const team = await teamService.findById(rankingTeam.team_id);
+
+        if (team) {
+          rankingTeam.team_name = team.name;
+        }
+      }
+
+      ranking.teams = ranking.teams.sort((a, b) => {
+        return a.team_name.localeCompare(b.team_name);
+      });
+
+      return ranking;
+    }
+
+    return null;
   }
 
   public async create(
@@ -41,6 +66,12 @@ class RankingService {
         transaction,
       );
     });
+  }
+
+  public async updateRanking(teams: RankingTeam[]): Promise<void> {
+    const rankingTeamService = new RankingTeamService();
+
+    await rankingTeamService.update(teams);
   }
 }
 

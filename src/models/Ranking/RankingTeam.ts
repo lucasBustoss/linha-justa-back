@@ -8,6 +8,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
+
 import Ranking from './Ranking';
 
 @Entity('rankings_teams')
@@ -24,6 +25,8 @@ class RankingTeam {
 
   @Column()
   team_id: string;
+
+  team_name: string;
 
   @Column()
   category: string;

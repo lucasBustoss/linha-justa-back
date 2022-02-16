@@ -47,7 +47,7 @@ class RankingService {
   public async create(
     league_id: string,
     categories: RankingCategory[],
-  ): Promise<void> {
+  ): Promise<Ranking> {
     const rankingTeamService = new RankingTeamService();
     const rankingCategoryService = new RankingCategoryService();
 
@@ -66,6 +66,8 @@ class RankingService {
         transaction,
       );
     });
+
+    return this.find(league_id);
   }
 
   public async updateRanking(teams: RankingTeam[]): Promise<void> {

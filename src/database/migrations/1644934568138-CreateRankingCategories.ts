@@ -8,6 +8,7 @@ export class CreateRankingCategories1644934568138 implements MigrationInterface 
             id uuid NOT NULL DEFAULT uuid_generate_v4(),
             ranking_id uuid,
             category VARCHAR(5),
+            category_index INT,
             description VARCHAR(300),
             created_at timestamp DEFAULT now(),
             updated_at timestamp DEFAULT now(),

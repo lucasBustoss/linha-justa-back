@@ -33,6 +33,7 @@ class RankingService {
           const rankingTeam = this.rankingTeamRepository.create({
             ranking_id,
             category: newCategory,
+            category_index: index * 3 + j,
             description: rankingCategory.description,
           });
 

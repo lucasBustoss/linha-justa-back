@@ -26,6 +26,9 @@ class League {
   category: string;
 
   @Column()
+  category_index: number;
+
+  @Column()
   description: string;
 
   @CreateDateColumn()

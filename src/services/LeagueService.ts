@@ -20,6 +20,12 @@ class LeagueService {
     return leagues;
   }
 
+  public async findById(id: string): Promise<League> {
+    const league = await this.leagueRepository.findOne(id);
+
+    return league;
+  }
+
   public async create(country: string, name: string): Promise<void> {
     const teamsService = new TeamsService();
 
@@ -38,6 +44,7 @@ class LeagueService {
         integration_id: Number(league.league.id),
         name: league.league.name,
         country: league.country.name,
+        logo: league.league.logo,
         season_start: league.seasons[0].start,
         season_end: league.seasons[0].end,
       };

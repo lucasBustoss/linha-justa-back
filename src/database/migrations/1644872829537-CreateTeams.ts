@@ -25,6 +25,10 @@ export class CreateTeams1644872829537 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
+                        name: 'logo',
+                        type: 'varchar',
+                    },
+                    {
                         name: 'created_at',
                         type: 'timestamp',
                         default: 'now()',

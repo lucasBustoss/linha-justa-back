@@ -10,6 +10,7 @@ import footballApi from '../config/footballApi';
 interface TeamsResponseDataResponseTeam {
   id: number;
   name: string;
+  logo: string;
 }
 
 interface TeamsResponseDataResponse {
@@ -42,6 +43,14 @@ class TeamService {
 
   public async findById(id: string): Promise<Team> {
     const team = await this.teamRepository.findOne(id);
+
+    return team;
+  }
+
+  public async findByIntegrationId(integration_id: number): Promise<Team> {
+    const team = await this.teamRepository.findOne({
+      integration_id,
+    });
 
     return team;
   }
@@ -84,6 +93,7 @@ class TeamService {
           const newTeam = {
             integration_id: integrationTeam.id,
             name: integrationTeam.name,
+            logo: integrationTeam.logo,
           };
 
           team = await this.teamRepository.save(newTeam);

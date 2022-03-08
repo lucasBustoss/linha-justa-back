@@ -28,6 +28,10 @@ export class CreateLeagues1644867412726 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
+                        name: 'logo',
+                        type: 'varchar',
+                    },
+                    {
                         name: 'season_start',
                         type: 'timestamp with time zone',
                     },

@@ -17,6 +17,14 @@ class RankingService {
     return rankings;
   }
 
+  public async findByTeam(team_id: string): Promise<RankingTeam> {
+    const ranking = await this.rankingTeamRepository.findOne({
+      team_id,
+    });
+
+    return ranking;
+  }
+
   public async create(
     ranking_id: string,
     league_id: string,
@@ -50,8 +58,6 @@ class RankingService {
   }
 
   public async update(teams: RankingTeam[]): Promise<RankingTeam[]> {
-    console.log(teams);
-
     const rankings = await this.rankingTeamRepository.save(teams);
 
     return rankings;

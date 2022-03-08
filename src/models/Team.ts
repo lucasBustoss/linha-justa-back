@@ -18,6 +18,9 @@ class Team {
   @Column()
   name: string;
 
+  @Column()
+  logo: string;
+
   @CreateDateColumn()
   created_at: Date;
 

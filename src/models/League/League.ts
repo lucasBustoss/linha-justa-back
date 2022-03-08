@@ -5,7 +5,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+import Fixture from '../Fixture';
 
 @Entity('leagues')
 class League {
@@ -22,10 +25,28 @@ class League {
   country: string;
 
   @Column()
+  logo: string;
+
+  @Column()
   season_start: Date;
 
   @Column()
   season_end: Date;
+
+  @Column()
+  homeadvantage_analysis: number;
+
+  @Column()
+  mustwin_analysis: number;
+
+  @Column()
+  form_analysis: number;
+
+  @Column()
+  shape_analysis: number;
+
+  @Column()
+  misses_analysis: number;
 
   @CreateDateColumn()
   created_at: Date;
